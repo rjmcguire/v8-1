@@ -21,6 +21,12 @@ static RandomNumberGenerator::EntropySource entropy_source = NULL;
 
 
 // static
+void RandomNumberGenerator::TearDown() {
+  entropy_mutex.Pointer()->~Mutex();
+}
+
+
+// static
 void RandomNumberGenerator::SetEntropySource(EntropySource source) {
   LockGuard<Mutex> lock_guard(entropy_mutex.Pointer());
   entropy_source = source;

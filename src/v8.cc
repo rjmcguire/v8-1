@@ -7,6 +7,7 @@
 #include "src/assembler.h"
 #include "src/base/once.h"
 #include "src/base/platform/platform.h"
+#include "src/base/utils/random-number-generator.h"
 #include "src/bootstrapper.h"
 #include "src/crankshaft/lithium-allocator.h"
 #include "src/debug/debug.h"
@@ -47,8 +48,12 @@ void V8::TearDown() {
   LOperand::TearDownCaches();
   RegisteredExtension::UnregisterAll();
   Isolate::GlobalTearDown();
+  base::OS::TearDown();
   sampler::Sampler::TearDown();
   FlagList::ResetAllFlags();  // Frees memory held by string arguments.
+  base::Time::TearDown();
+  base::RandomNumberGenerator::TearDown();
+  PerThreadAssertRuntime::TearDown();
 }
 
 
@@ -71,6 +76,7 @@ void V8::InitializeOncePerProcessImpl() {
     FlagList::SetFlagsFromString(filter_flag, StrLength(filter_flag));
   }
 
+  base::OS::SetUp();
   base::OS::Initialize(FLAG_random_seed, FLAG_hard_abort, FLAG_gc_fake_mmap);
 
   Isolate::InitializeOncePerProcess();
