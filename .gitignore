@@ -40,7 +40,6 @@ gcsuspects
 shell
 shell_g
 /_*
-/base
 /build
 /gypfiles/win_toolchain.json
 /buildtools
@@ -60,10 +59,8 @@ shell_g
 /test/test262/data.tar
 /test/test262/harness
 /testing/gmock
-/testing/gtest
 /third_party
 /third_party/android_tools
-/third_party/cygwin
 /third_party/icu
 /third_party/instrumented_libraries
 /third_party/inspector_protocol
@@ -75,7 +72,6 @@ shell_g
 /tools/clang
 /tools/gcmole/gcmole-tools
 /tools/gcmole/gcmole-tools.tar.gz
-/tools/gyp
 /tools/jsfunfuzz/jsfunfuzz
 /tools/jsfunfuzz/jsfunfuzz.tar.gz
 /tools/luci-go/linux64/isolate
